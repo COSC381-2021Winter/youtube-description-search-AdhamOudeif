@@ -5,4 +5,7 @@
 This is a class project for COSC 381 at EMU. The project is supposed to search the descriptions of YouTube videos.
 
 ### Installation
-This project needs python3 on the AWS machine
+This project needs python3 on the AWS machin
+
+### Exercises 
+just trying this out and this should give me an error 
