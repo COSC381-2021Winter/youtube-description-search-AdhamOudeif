@@ -8,4 +8,4 @@ This is a class project for COSC 381 at EMU. The project is supposed to search t
 This project needs python3 on the AWS machin
 
 ### Exercises 
-just trying this out and this should give me an error 
+just trying this out and this should give me an error this time
