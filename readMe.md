@@ -1,18 +1,9 @@
 # Youtube Description Search
-
-## Adham Oudeif
-
-This is a class project for COSC 381 at EMU. The project is supposed to search the descriptions of YouTube videos.
-
-### Installation
-This project needs python3 on the AWS machin
-
-### Exercises 
-
-doing git diff section of the homework 
-
-
-this is an edit on MAIN
-
-making conflict in the branch
+To run the repository:
+1. add your Google API key and CSE key to flaskr/config.py
+2. create a virtual environment and install the packages:
+    - python3 -m venv env
+    - source env/bin/activate
+    - pip install -r requirements.txt
+3. run the app: flask run --host 0.0.0.0
 
