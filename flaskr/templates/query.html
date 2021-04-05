@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>COSC381 Query</title>
+    </head>
+    <body >
+        <p>Query</p>
+
+        {% if data is defined %}
+            <ol>
+            {% for item in data %}
+                <li>{{ item['snippet']['title'] }}
+                    <br /> {{ item['snippet']['description'] }}
+                    <br /> <a href="https://www.youtube.com/watch?v={{ item['id']['videoId'] }}" target="_blank">link</a>
+
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>no search results</p>
+        {% endif %}
+        </ol>
+    </body>
+</html>
