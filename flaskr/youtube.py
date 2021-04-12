@@ -40,9 +40,14 @@ def search(query_term, max_page_count):
 
         pageCounter = pageCounter + 1
         nextPage=results.get('nextPageToken',None)
+    
+    with open('youtube_search_' + query_term + '.json', 'w', encoding='utf-8') as f:
+        json.dump(resultList, f, ensure_ascii=False, indent=4)
 
     
-        return resultList
+    return resultList
+
+
 if __name__ == '__main__':
     arg1 = sys.argv[0]
 
