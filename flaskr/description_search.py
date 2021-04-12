@@ -39,9 +39,11 @@ def query_on_whoosh(index_name, query_str):
         for result in results:
             d = {}
             d['url'] = "https://www.youtube.com/watch?v=" + result['id']
-            d['title'] = result['title']
-            d['description'] = result.highlights('description')
-            d['score'] = result.score
+            d['snippet'] = {}
+            d['snippet']['title'] = result['title']
+            d['snippet']['description'] = result.highlights('description')
+            d['id'] = {}
+            d['id']['videoId'] = result.score
             formatted_results.append(d)
 
     return formatted_results
