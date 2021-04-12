@@ -2,6 +2,7 @@ import sys
 import config
 import json
 from googleapiclient.discovery import build
+# pylint: disable=maybe-no-member
 
 api_key = config.api_key
 cse_id = config.cse_id
@@ -10,12 +11,12 @@ service = build("youtube", "v3", developerKey=api_key)
 def search(query_term, max_page_count):
     pageCounter=0
     resultList=[]
-    results = service.search().list(part="snippet", maxResults=50, q=query_term).execute()
+    results = service.search().list(part="snippet", type="video", maxResults=50, q=query_term).execute()
     resultList.extend(results['items'])
     nextPage=results.get('nextPageToken',None)
 
     while nextPage and (pageCounter < max_page_count):
-        results = service.search().list(part="snippet", maxResults=50, pageToken=nextPage, q=query_term).execute()
+        results = service.search().list(part="snippet", type="video", maxResults=50, pageToken=nextPage, q=query_term).execute()
         resultList.extend(results['items'])
 
         pageCounter = pageCounter + 1
