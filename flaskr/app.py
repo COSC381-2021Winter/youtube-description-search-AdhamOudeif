@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from youtube import search
+from description_search import create_whoosh_index
 #print("The variable _name_: ")
 #print(_name_)
 
@@ -28,5 +29,9 @@ def query():
     if not arg or not arg.strip():
         return render_template("query.html")
     
+    index_name = "whoosh_index" + arg
+
     results = search(arg, 1)
+    create_whoosh_index(results, index_name)
+
     return render_template("query.html", data=results)
