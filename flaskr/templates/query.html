@@ -5,14 +5,14 @@
     <body >
         <form action="/query?q={{ query_term }}" method="POST">
             <input name="description_search" placeholder="search here for highlighted term" type="text" value="">
-            <input type="submit" value="search">
+            <input name="search_button" type="submit" value="search">
         </form>
         <p>Query</p>
 
         {% if data is defined %}
             <ol>
             {% for item in data %}
-                <li>{{ item['snippet']['title'] }}
+                <li class="youtube-video">{{ item['snippet']['title'] }}
                     <br /> <span> {{ item['snippet']['description'] | safe }} </span>
                     <br /> <a href="https://www.youtube.com/watch?v={{ item['id']['videoId'] }}" target="_blank">link</a>
 
