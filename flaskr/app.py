@@ -17,11 +17,9 @@ app = Flask(__name__) # the name of the script
 
 @app.route("/")
 def index(): #The method name doesn't matter to Flask
-    username = request.args.get('name')
-    if not username or not username.strip():
-        username = "World"
 
-    return render_template("index.html", name="Hello " + username)
+
+    return render_template("index.html")
 
 @app.route("/query", methods=['GET', 'POST'])
 def query():
