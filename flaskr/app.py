@@ -38,4 +38,4 @@ def query():
         # request sent by search bar on query page
         search_term = request.form['description_search']
         results = query_on_whoosh(index_name, search_term)
-        return render_template("query.html", query_term=arg, data=results)
+        return render_template("description.html", query_term=arg, data=results)
