@@ -1,4 +1,5 @@
 import sys
+import os
 import config
 import json
 from googleapiclient.discovery import build
@@ -25,6 +26,28 @@ def search(query_term, max_page_count):
                 video_list.append(video_info)
         
         return video_list
+
+    results = []
+    count=1
+    index_name="youtube_search_"+query_term+".json"
+    if os.path.exists(index_name):
+        with open(index_name) as f:
+              results = json.load(f)
+    else:
+        
+        tempResults=service.search().list(q=query_term, part="snippet",type="video",maxResults=50).execute()
+        video_list=get_video_list(tempResults)
+        results.extend(video_list)
+        while tempResults['nextPageToken']!='' and count < max_page_cnt:
+            token=tempResults['nextPageToken']
+            tempResults=service.search().list(q=query_term, part="snippet",type="video",maxResults=50,pageToken=token).execute()
+            video_list=get_video_list(tempResults)
+            results.extend(video_list)
+            count+=1
+        fileName="youtube_search_"+query_term+".json"
+        with open(fileName,'w',encoding='utf-8')as f:
+            json.dump(results,f,ensure_ascii=False,indent=4)
+    return results
 
     pageCounter=0
     resultList=[]

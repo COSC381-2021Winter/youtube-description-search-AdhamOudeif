@@ -5,6 +5,16 @@
     <body >
         <h1>Youtube Description Search</h1>
         <a href="./">Home</a>
+       
+
+        <form action="/query?q={{query_term}}"method="POST">
+            <input name="description_search" placeholder="search here" type="Hidden" value="">
+            <a href="" type="submit">show all</a>
+        </form>
+
+
+
+
         <form action="/query?q={{ query_term }}" method="POST">
             <input name="description_search" placeholder="search here for highlighted term" type="text" value="">
             <input name="search_button" type="submit" value="search">
