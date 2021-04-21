@@ -1,8 +1,14 @@
 <html>
     <head>
-        <title>COSC381 Program</title>
+        <title>Youtube Description Search</title>
     </head>
     <body >
+        <h1>Youtube Description Search</h1>
         {{ name }}
-        <p>To do a Youtube query: <a href="./query">link</a></p>
+        <p>
+            <form action="/query" method="GET">
+                <input name="q" placeholder="search here for highlighted term" type="text" value="">
+                <input type="submit" value="search">
+            </form>
+    </p>
     </body></html>
