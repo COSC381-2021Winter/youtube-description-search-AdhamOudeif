@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 from youtube import search
 from musicSearch import mSearch
-from description_search import create_whoosh_index, query_on_whoosh
+from description_search import create_whoosh_index, query_on_whoosh, query_on_music
 #print("The variable _name_: ")
 #print(_name_)
 
@@ -59,5 +59,10 @@ def mquery():
         if request.method == 'POST':
             # request sent by search bar on query page
             search_term = request.form['musicSearch']
-            results = query_on_whoosh(index_name, search_term)
-            return render_template("music_desc_search.html", query_term=arg, data=results, search_t=search_term)
+            results=query_on_whoosh(index_name,search_term)
+            spotify=request.form['spot_search']
+            if spotify=='':
+                results=query_on_whoosh(index_name,search_term)
+                return render_template("music_desc_search.html",query_term=arg, data=results, search_t=search_term)
+            results = query_on_music(index_name, search_term)
+            return render_template("music_desc_search.html", query_term=arg, data=results, search_t=search_term, checkbox='wad')

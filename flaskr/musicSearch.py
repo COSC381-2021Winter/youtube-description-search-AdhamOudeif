@@ -35,12 +35,12 @@ def mSearch(query_term, max_page_count):
               results = json.load(f)
     else:
         
-        tempResults=service.mSearch().list(q=query_term, part="snippet",type="video",maxResults=50,videoCategoryId=10).execute()
+        tempResults=service.search().list(q=query_term, part="snippet",type="video",maxResults=50,videoCategoryId=10).execute()
         video_list=get_video_list(tempResults)
         results.extend(video_list)
         while tempResults['nextPageToken']!='' and count < max_page_count:
             token=tempResults['nextPageToken']
-            tempResults=service.mSearch().list(q=query_term, part="snippet",type="video",maxResults=50,pageToken=token,videoCategoryId=10).execute()
+            tempResults=service.search().list(q=query_term, part="snippet",type="video",maxResults=50,pageToken=token,videoCategoryId=10).execute()
             video_list=get_video_list(tempResults)
             results.extend(video_list)
             count+=1
@@ -51,13 +51,13 @@ def mSearch(query_term, max_page_count):
 
     pageCounter=0
     resultList=[]
-    results = service.mSearch().list(part="snippet", type="video", maxResults=50, q=query_term, videoCategoryId=10).execute()
+    results = service.search().list(part="snippet", type="video", maxResults=50, q=query_term, videoCategoryId=10).execute()
     video_list = get_video_list(results)
     resultList.extend(video_list)
     nextPage=results.get('nextPageToken',None)
 
     while nextPage and (pageCounter < max_page_count):
-        results = service.mSearch().list(part="snippet", type="video", maxResults=50, pageToken=nextPage, q=query_term, videoCategoryId=10).execute()
+        results = service.search().list(part="snippet", type="video", maxResults=50, pageToken=nextPage, q=query_term, videoCategoryId=10).execute()
         video_list = get_video_list(results)
         resultList.extend(video_list)
 
