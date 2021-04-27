@@ -6,9 +6,17 @@
         <h1>Youtube Description Search</h1>
         {{ name }}
         <p>
+            <h3>Search for Youtube Videos</h2>
             <form action="/query" method="GET">
                 <input name="q" placeholder="search here for highlighted term" type="text" value="">
                 <input type="submit" value="search">
             </form>
     </p>
+    <p>
+        <h3>Search for Music Videos</h2>
+        <form action="/music_query" method="GET">
+            <input name="m" placeholder="search here for highlighted term" type="text" value="">
+            <input type="submit" value="search">
+        </form>
+</p>
     </body></html>

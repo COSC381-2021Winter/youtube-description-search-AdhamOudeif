@@ -1,0 +1,114 @@
+<!-- <html>
+
+<head>
+    <title>Music Description Search</title>
+</head>
+
+<body>
+    <h1>Music Description Search</h1>
+    <a href="./">Home</a>
+
+
+    <form action="/music_query?m={{query_term}}" method="POST">
+        <input name="musicSearch" placeholder="search here" type="Hidden" value="">
+        <a href="" type="submit">show all</a>
+    </form>
+
+    <form action="/music_query?m={{ query_term }}" method="POST">
+        <input name="musicSearch" placeholder="search here for highlighted term" type="text" value="{{search_t}}">
+        <input name="search_button" type="submit" value="search">
+
+        {% if checkbox is defined %}
+        <input name="spot_search" id="spot_search" placeholder="search here" type="Hidden" value="Spotify">
+        <p>Spotify Filter<input type="checkbox" name="Spotify" id="Spotify" checked onClick="change();"></p>
+    </form>
+    {% else %}
+    <input name="spot_search" id="spot_search" placeholder="search here" type="Hidden" value="">
+    <p>Spotify Filter<input type="checkbox" name="Spotify" id="Spotify" onClick="change();"></p>
+    </form>
+    {% endif %}
+    <p>Query</p>
+
+    {% if data is defined %}
+    <ol>
+        {% for item in data %}
+        <li class="youtube-video">{{ item['snippet']['title'] }}
+            <br /> <span> {{ item['snippet']['description'] | safe }} </span>
+            <br /> <a href="https://www.youtube.com/watch?v={{ item['id']['videoId'] }}" target="_blank">link</a>
+
+        </li>
+        {% endfor %}
+        {% else %}
+        <p>no search results</p>
+    </ol>
+    {% endif %}
+    <script>
+        function change() {
+            value = document.getElementById("spot_search").value;
+            if (value = "Spotify") {
+                document.getElementById("spot_search").value = '';
+            }
+            else {
+                document.getElementById("spot_search").value = 'Spotify';
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<html>
+    <head>
+        <title>Music Description Search</title>
+    </head>
+    <body>
+        <h1>Music Description Search</h1>
+        <a href="./">Home</a>
+        <form action="/music_query?m={{query_term}}"method="POST">
+            <input name="musicSearch" placeholder="search here" type="text" value="{{search_t}}">
+            <input name="search_button" type="submit" value="search">
+        
+        
+        {% if checkbox is defined %}
+            <input name="spot_search" id="spot_search"placeholder="search here" type="Hidden" value="Spotify">
+            <p>Spotify Filter<input type="checkbox" name="Spotify" id="Spotify" checked  onclick="change()"></p>
+        </form>
+        {% else %}
+            <input name="spot_search" id="spot_search"placeholder="search here" type="Hidden" value="">
+            <p>Spotify Filter<input type="checkbox" name="Spotify" id="Spotify" onclick="change()"></p>
+        </form>
+        {% endif %}
+        <form action="/music_query?m={{query_term}}"method="POST">
+            <input name="musicSearch" placeholder="search here" type="Hidden" value="">
+            <a href="" type="submit">show all</a>
+        </form>
+
+        <p>query</p>
+        {% if data is defined %}
+        <ol>
+            {% for item in data %}
+            <li class="youtube-video">{{ item['snippet']['title']}}
+                <br/><span>{{item['snippet']['description']| safe }}</span>
+                <br><iframe width="420" height="315"
+                src="https://youtube.com/embed/{{item['id']['videoId']}}">
+                </iframe></br>
+                <br/><a href="https://youtube.com/watch?v={{item['id']['videoId']}}"target="_blank">link</a>
+            </li>
+            {% endfor %}
+        {% else %}
+            <p>No search results</p>
+        </ol>
+        {% endif %}
+        <script>
+        function change(){
+            value=document.getElementById("spot_search").value;
+            if (value == "Spotify"){
+                document.getElementById("spot_search").value='';
+            }
+            else{
+                document.getElementById("spot_search").value='Spotify';
+            }
+        }
+        </script>
+    </body>
+</html>
